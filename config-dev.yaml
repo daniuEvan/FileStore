@@ -1,0 +1,69 @@
+host: 127.0.0.1
+port: 8080
+language: zh       # 语言 zh/en
+
+log:
+  logLevel: debug               # debug, info, warn, error, dpanic, panic, fatal
+  logPath: ./logs/api.log        # 日志绝对路径
+  logInConsole: true            # 打印到控制台
+  maxSize: 1000                 # 在进行切割之前，日志文件的最大大小（以MB为单位)
+  maxBackups: 10                # 保留旧文件的最大个数
+  maxAge: 30                    # 保留旧文件的最大天数
+  mompress: false               # 是否压缩/归档旧文件
+
+database:
+  dbType: mysql   # "postgres" / "mysql"
+  tablePrefix : cli_  #  表前缀
+  # backend db mysql conf
+  mysql:
+    dbname: file_store
+    host: 127.0.0.1
+    port: 3306
+    username: root
+    password: Abcd@123456
+
+  # backend db pg conf
+  postgres:
+    dbname: postgres
+    schema: data_compare
+    host: 10.0.23.109
+    port: 5432
+    username: postgres
+    password: Abcd@123456
+
+  # 后台数据库连接池信息
+  ormDatabasePool:
+    status: disable            # enable 开启orm数据库连接池 disable 不启用orm数据库连接池
+    maxIdleConns: 10           # 空闲连接池中连接的最大数量
+    maxOpenConns: 3000         # 打开数据库连接的最大数量
+    connMaxLifetime: 360       # 连接可复用的最大时间(单位:s)
+
+  # redis conf
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    db: 0
+    username:
+    password:
+    connectTimeout: 1000           # 单位:ms
+    poolMaxIdleConns: 10           # 空闲连接池中连接的最大数量
+    poolMaxOpenConns: 5000          # 打开数据库连接的最大数量
+    poolConnMaxLifetime: 360       # 连接可复用的最大时间(单位:s)
+
+
+auth:
+  jwt:
+    tokenKey: x-token
+    signingKey: qweqweq2341dsf  # 盐
+    effectiveTime: 3600000000    # 有效时间(单位:s)
+  ldap:
+    ldapHost: 101.201.211.113
+    ldapPort: 389
+    baseDN: cn=dev-zu,ou=product-unit-bumen,dc=example,dc=com
+    searchProperty: cn   # cn/uid
+    bindDN: cn=admin,dc=example,dc=com
+    bindPassword: admin
+
+
+
+
