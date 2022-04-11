@@ -13,7 +13,7 @@ log:
 
 database:
   dbType: mysql   # "postgres" / "mysql"
-  tablePrefix : cli_  #  表前缀
+  tablePrefix: cli_  #  表前缀
   # backend db mysql conf
   mysql:
     dbname: file_store
@@ -33,9 +33,9 @@ database:
 
   # 后台数据库连接池信息
   ormDatabasePool:
-    status: disable            # enable 开启orm数据库连接池 disable 不启用orm数据库连接池
+    status: enable            # enable 开启orm数据库连接池 disable 不启用orm数据库连接池
     maxIdleConns: 10           # 空闲连接池中连接的最大数量
-    maxOpenConns: 3000         # 打开数据库连接的最大数量
+    maxOpenConns: 100         # 打开数据库连接的最大数量
     connMaxLifetime: 360       # 连接可复用的最大时间(单位:s)
 
   # redis conf

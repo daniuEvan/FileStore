@@ -30,6 +30,8 @@ func main() {
 	}
 	// 初始化路由
 	ginEngine := initialize.InitRouters()
+	ginEngine.Static("/static", "./static")
+	ginEngine.LoadHTMLGlob("static/view/*")
 	serverAddr := fmt.Sprintf("%s:%d", global.ServerConfig.Host, global.ServerConfig.Port)
 	global.Logger.Info(fmt.Sprintf("handler running at %s", serverAddr))
 	err := ginEngine.Run(serverAddr)

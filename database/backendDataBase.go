@@ -15,6 +15,7 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
+	"time"
 )
 
 var serverDB *gorm.DB
@@ -114,8 +115,22 @@ func newDBConn() (db *gorm.DB, err error) {
 		return db, err
 	}
 	// 构建数据库连接池
-	if err := buildOrmDatabasePool(); err != nil {
+	if err := buildOrmDatabasePool(db); err != nil {
 		return nil, err
 	}
 	return db, nil
+}
+
+// 构建 orm 数据库连接池
+func buildOrmDatabasePool(db *gorm.DB) error {
+	sqlDB, err := db.DB()
+	if err != nil {
+		global.Logger.Error("构建数据库连接池异常:", zap.String("errorMsg", err.Error()))
+		return err
+	}
+	databasePoolInfo := global.ServerConfig.DatabaseInfo.OrmDatabasePoolInfo
+	sqlDB.SetMaxIdleConns(databasePoolInfo.MaxIdleConns)                                    // 空闲连接池中连接的最大数量
+	sqlDB.SetMaxOpenConns(databasePoolInfo.MaxOpenConns)                                    // 数据库连接的最大数量
+	sqlDB.SetConnMaxLifetime(time.Minute * time.Duration(databasePoolInfo.ConnMaxLifetime)) // 连接可复用的最大时间。
+	return nil
 }

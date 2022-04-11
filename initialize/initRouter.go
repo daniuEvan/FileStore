@@ -7,7 +7,7 @@ package initialize
 
 import (
 	"FileStore/middleware"
-	userRouter "FileStore/service/router"
+	"FileStore/service/router"
 	"FileStore/utils"
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
@@ -23,8 +23,10 @@ func InitRouters() *gin.Engine {
 		defaultEngine = gin.New()
 	}
 	defaultEngine.Use(middleware.Cors()) // 跨域
+	router.InitIndexRouter(defaultEngine)
 	apiGroup := defaultEngine.Group("api/v1")
-	userRouter.InitUserRouter(apiGroup)
+	router.InitUserRouter(apiGroup)
+	router.InitUploadRouter(apiGroup)
 	return defaultEngine
 
 }

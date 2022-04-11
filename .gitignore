@@ -24,6 +24,7 @@ config-pro.yaml
 # test file
 *_test.go
 data-compare
+main
 
 
 # Editor directories and files
@@ -35,3 +36,6 @@ data-compare
 *.sln
 *.sw?
 .env.production
+
+# custom
+uploadFiles/
