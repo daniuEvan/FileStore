@@ -1,5 +1,5 @@
 host: 127.0.0.1
-port: 8080
+port: 8081
 language: zh       # 语言 zh/en
 
 log:
@@ -18,18 +18,18 @@ database:
   mysql:
     dbname: file_store
     host: 127.0.0.1
-    port: 3306
-    username: root
-    password: Abcd@123456
+    port:
+    username:
+    password:
 
   # backend db pg conf
   postgres:
     dbname: postgres
     schema: data_compare
-    host: 10.0.23.109
+    host:
     port: 5432
-    username: postgres
-    password: Abcd@123456
+    username:
+    password:
 
   # 后台数据库连接池信息
   ormDatabasePool:

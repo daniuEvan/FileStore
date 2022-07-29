@@ -26,7 +26,7 @@ func InitRouters() *gin.Engine {
 	router.InitIndexRouter(defaultEngine)
 	apiGroup := defaultEngine.Group("api/v1")
 	router.InitUserRouter(apiGroup)
-	router.InitUploadRouter(apiGroup)
+	router.InitFileRouter(apiGroup)
 	return defaultEngine
 
 }
